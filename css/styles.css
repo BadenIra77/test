@@ -53,7 +53,7 @@ body{
 .logo-web { color:#2196F3;
 }
 
-.header-link {
+.header-link, .header-link-st, .header-link-pf {
     font-weight: 500;
     font-size: 14px;
     line-height: 1.14;
@@ -108,10 +108,10 @@ margin-left: auto;}
 .header-border{
 border: 1px solid #ECECEC;
 }
-.header-link {
+.header-link-st, .header-link-pf {
     position: relative;
 }
-.header-link::after {
+.header-link-st::after {
     content: '';
     display: block;
     width: 100%;
@@ -123,9 +123,27 @@ border: 1px solid #ECECEC;
     display: none;
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.header-link:hover::after {
+.header-link-st::after {
 display: block;
 transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header-link-pf::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: #2196F3;
+    position: absolute;
+    top: 43px;
+    display: none;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-link-pf::after
+{
+        display: block;
+        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .caption-address-icon{
@@ -570,8 +588,7 @@ left: 0;
 height: 100%;
 width: 100%;
 background: rgba(0, 0, 0, 0.2);
-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms;
 }
 .modal {
 position: absolute;
@@ -581,7 +598,12 @@ background-color: #FFFFFF;
 border-radius: 4px;
 top: 50%;
 left: 50%;
-transform: translate(-50%, -50%);
+transform:translate(-50%, -50%) scale(1);
+transition:transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden .modal {
+transform:translate(-50%, -50%) scale(0);
+transition:transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-close {
     position: absolute;
